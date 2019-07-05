@@ -3,6 +3,9 @@ package junit5;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -17,6 +20,10 @@ public class MathUtilsTest{
 	 int actual = mu.add(1, 1);
 	 assertEquals(expected, actual);
 	 // fail("Not done"); 
+
+	 
+	 Assertions.assertTimeout(Duration.ofMillis(100), 
+			 () -> { Thread.sleep(200); return "result";});
 	 
 	 //assertEquals(expected, actual);
 	 //assertArrayEquals(expecteds, actuals);

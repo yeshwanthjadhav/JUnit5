@@ -1,0 +1,12 @@
+# Created at 2019-07-03T19:36:50.570
+Jul 03, 2019 7:36:50 PM org.junit.vintage.engine.discovery.DefensiveAllDefaultPossibilitiesBuilder$DefensiveAnnotatedBuilder buildRunner
+
+# Created at 2019-07-03T19:36:50.571
+WARNING: Ignoring test class using JUnitPlatform runner: junit5.MathUtilsTest
+
+# Created at 2019-07-03T19:36:50.775
+Jul 03, 2019 7:36:50 PM org.junit.vintage.engine.discovery.DefensiveAllDefaultPossibilitiesBuilder$DefensiveAnnotatedBuilder buildRunner
+
+# Created at 2019-07-03T19:36:50.776
+WARNING: Ignoring test class using JUnitPlatform runner: junit5.MathUtilsTest
+
