@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -92,6 +94,13 @@ public class MathUtilsTest {
 		fail("Fail this method");
 	}
 	
+	
+	@RepeatedTest(4)
+	void testAddPositive(RepetitionInfo info) {
+		info.getCurrentRepetition();
+		info.getTotalRepetitions();
+		Assertions.assertEquals(4, mu.add(2, 2));
+	}
 	
 	@Nested
 	@DisplayName("Add Numbers")
