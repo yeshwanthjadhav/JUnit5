@@ -1,6 +1,5 @@
 package junit5;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -13,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -27,43 +27,49 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 public class MathUtilsTest {
 
+	/**
+	 * https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html
+	 */
+	
 	/*
-	@EnabledOnOs(OS.LINUX)
-	@EnabledOnJre(JRE.JAVA_11)
-	@EnabledIf
-	@EnabledIfSystemProperty
-	@EnabledIfEnvironmentVariable
-	*/
+	 * @EnabledOnOs(OS.LINUX)
+	 * 
+	 * @EnabledOnJre(JRE.JAVA_11)
+	 * 
+	 * @EnabledIf
+	 * 
+	 * @EnabledIfSystemProperty
+	 * 
+	 * @EnabledIfEnvironmentVariable
+	 */
+	
 	MathUtils mu;
-	
+
 	@BeforeAll
-	static void beforeAllInit(){
-		System.out.println("Run before all...."); 
+	static void beforeAllInit() {
+		System.out.println("Run before all....");
 	}
-	
+
 	@BeforeEach
-	void init(){
+	void init() {
 		mu = new MathUtils();
 		System.out.println("Run before each method....");
 	}
 
 	@AfterEach
-	void cleanUp(){
+	void cleanUp() {
 		System.out.println("Clean up......");
 	}
-	
+
 	@Test
 	@DisplayName("Divide two numbers")
 	void testDivide() {
 		Assertions.assertThrows(ArithmeticException.class, () -> mu.divide(1, 0), "Divide ");
 	}
-	
+
 	@Test
-	void testAssertAll(){
-		assertAll(
-					() -> assertEquals(2, mu.divide(4, 2)),
-					() -> assertEquals(5, mu.divide(10, 2))
-				);
+	void testAssertAll() {
+		assertAll(() -> assertEquals(2, mu.divide(4, 2)), () -> assertEquals(5, mu.divide(10, 2)));
 	}
 
 	@Test
@@ -78,17 +84,29 @@ public class MathUtilsTest {
 			return "result";
 		});
 
-		// assertEquals(expected, actual);
-		// assertArrayEquals(expecteds, actuals);
-		// assertIterableEquals(expectedArray, actualArray);
-
-		// https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html
 	}
-	
+
 	@Test
 	@Disabled
-	void testDisabled(){
+	void testDisabled() {
 		fail("Fail this method");
+	}
+	
+	
+	@Nested
+	@DisplayName("Add Numbers")
+	class AddTest{
+	
+		@Test
+		void testAddPositive() {
+			Assertions.assertEquals(4, mu.add(2, 2));
+		}
+		
+		@Test
+		void testAddNegative() {
+			Assertions.assertEquals(-4, mu.add(-2, -2));
+		}
+		
 	}
 
 }
