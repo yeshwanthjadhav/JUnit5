@@ -1,7 +1,9 @@
 package junit5;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.time.Duration;
 
@@ -54,6 +56,14 @@ public class MathUtilsTest {
 	@DisplayName("Divide two numbers")
 	void testDivide() {
 		Assertions.assertThrows(ArithmeticException.class, () -> mu.divide(1, 0), "Divide ");
+	}
+	
+	@Test
+	void testAssertAll(){
+		assertAll(
+					() -> assertEquals(2, mu.divide(4, 2)),
+					() -> assertEquals(5, mu.divide(10, 2))
+				);
 	}
 
 	@Test
